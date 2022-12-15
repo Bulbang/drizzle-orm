@@ -1,6 +1,7 @@
 import { Column } from './column';
 import { SelectFieldsOrdered } from './operations';
 import { DriverValueDecoder, noopDecoder, SQL } from './sql';
+import { Table } from './table';
 
 export function mapResultRow<TResult>(
 	columns: SelectFieldsOrdered,
@@ -142,3 +143,9 @@ export type Simplify<
 	Options extends SimplifyOptions = {},
 > = Flatten<AnyType> extends AnyType ? Flatten<AnyType, Options>
 	: AnyType;
+
+export function getTableColumns<TTable extends Table>(table: TTable) {
+	const columns = table[Table.Symbol.Columns]!;
+	const keys = Reflect.ownKeys(columns);
+	return keys.map((key) => columns[key]!);
+}

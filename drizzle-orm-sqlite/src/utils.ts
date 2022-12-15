@@ -5,11 +5,7 @@ import { SelectFieldsOrdered, SQLiteSelectFields } from '~/operations';
 import { SQLiteUpdateSet } from '~/query-builders';
 import { AnySQLiteTable, SQLiteTable } from '~/table';
 
-export function getTableColumns<TTable extends AnySQLiteTable>(table: TTable) {
-	const columns = table[SQLiteTable.Symbol.Columns];
-	const keys = Reflect.ownKeys(columns);
-	return keys.map((key) => columns[key]!);
-}
+export { getTableColumns } from 'drizzle-orm/utils';
 
 export function getTableIndexes<TTable extends AnySQLiteTable>(table: TTable) {
 	const indexes = table[SQLiteTable.Symbol.Indexes];

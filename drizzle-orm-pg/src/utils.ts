@@ -5,11 +5,7 @@ import { SelectFields, SelectFieldsOrdered } from '~/operations';
 import { PgUpdateSet } from '~/query-builders';
 import { AnyPgTable, PgTable } from '~/table';
 
-export function getTableColumns<TTable extends AnyPgTable>(table: TTable) {
-	const columns = table[PgTable.Symbol.Columns];
-	const keys = Reflect.ownKeys(columns);
-	return keys.map((key) => columns[key]!);
-}
+export { getTableColumns } from 'drizzle-orm/utils';
 
 export function getTableIndexes<TTable extends AnyPgTable>(table: TTable) {
 	const indexes = table[PgTable.Symbol.Indexes];
